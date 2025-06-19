@@ -1,3 +1,0 @@
-Testing this file.
-How would it print out?
-Hello?

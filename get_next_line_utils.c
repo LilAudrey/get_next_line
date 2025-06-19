@@ -6,7 +6,7 @@
 /*   By: autan <autan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:53:54 by autan             #+#    #+#             */
-/*   Updated: 2025/06/19 19:19:10 by autan            ###   ########.fr       */
+/*   Updated: 2025/06/19 22:05:39 by autan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ char	*ft_strdup(const char *s)
 	return (string);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_free(char const *s1, char const *s2)
 {
 	size_t	len1;
 	size_t	len2;
 	char	*joined_string;
 	char	*dest;
+	char	*temp_s1_to_free;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -78,12 +79,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!joined_string)
 		return (NULL);
 	dest = joined_string;
+	temp_s1_to_free = (char *)s1;
 	while (*s1)
 		*dest++ = *s1++;
 	while (*s2)
 		*dest++ = *s2++;
 	*dest = '\0';
-	free ((char *)s1);
+	free (temp_s1_to_free);
 	return (joined_string);
 }
 
@@ -113,21 +115,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	return (substring);
 }
-
-/*
-int main(void)
-{
-	int fd = open("file.txt", O_RDWR);
-	if (fd <= -1)
-		return(1);
-	char *str = get_next_line(fd);
-	while (str)
-	{
-		printf("%s", str);
-		free(str);
-		str = get_next_line(fd);
-	}
-	close(fd);
-	return(0);
-}
-*/

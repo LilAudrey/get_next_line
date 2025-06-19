@@ -6,7 +6,7 @@
 /*   By: autan <autan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:53:51 by autan             #+#    #+#             */
-/*   Updated: 2025/06/19 19:21:49 by autan            ###   ########.fr       */
+/*   Updated: 2025/06/19 22:06:17 by autan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*get_next_line(int fd)
 	char		*full_line;
 	static char	*leftover;
 	char		*final_line;
-	char		*new_leftover;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -28,9 +27,8 @@ char	*get_next_line(int fd)
 	full_line = fill_line_buffer (fd, leftover, buffer);
 	free (buffer);
 	final_line = set_line (full_line);
-	new_leftover = extract_after_nl (full_line);
 	free (leftover);
-	leftover = new_leftover;
+	leftover = extract_after_nl (full_line);
 	free (full_line);
 	if (!final_line || final_line[0] == '\0')
 	{
@@ -106,3 +104,24 @@ size_t	ft_strlen_nl(const char *s)
 		i++;
 	return (i);
 }
+
+/*
+# include <fcntl.h>
+# include <stdio.h>
+
+int main(void)
+{
+	int fd = open("file.txt", O_RDWR);
+	if (fd <= -1)
+		return(1);
+	char *str = get_next_line(fd);
+	while (str)
+	{
+		printf("%s", str);
+		free(str);
+		str = get_next_line(fd);
+	}
+	close(fd);
+	return(0);
+}
+*/
