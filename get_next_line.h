@@ -6,12 +6,12 @@
 /*   By: autan <autan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:53:57 by autan             #+#    #+#             */
-/*   Updated: 2025/06/19 19:11:31 by autan            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:23:42 by autan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE
-# define GET_NEXT_LINE
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <stdlib.h> // malloc & free
 # include <unistd.h> // read
